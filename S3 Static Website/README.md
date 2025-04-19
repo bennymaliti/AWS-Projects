@@ -13,9 +13,11 @@ By the end of this guide, you will
 - **AWS CLI:** Installed and configured locally. Run <ins> aws configure </ins> to set up your credentials and default region.
 - **Git & GitHub:** A GitHub repository containing your static site files (HTML, CSS, JS, assets)
 
-## Run the below commands using AWS CLI
+## Configure AWS CLI
+- Install or update the [AWS CLI](https://awscli.amazonaws.com/AWSCLIV2.msi)
+- **Verify the installation:** - open Start menu, search for cmd to open command prompt and type "C:\> aws --version"
+- 
 
 ## 1. Create an S3 Bucket
-# Replace below <your-bucket-name> and <region> with your values
-aws s3
+aws s3 mb s3://<
 
