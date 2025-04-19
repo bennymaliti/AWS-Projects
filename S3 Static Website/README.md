@@ -27,8 +27,7 @@ By the end of this guide, you will
 aws s3 mb s3://your-bucket-name --region region
 
 ## 2. Enable Static Website Hosting
-aws s3 website s3://your-bucket-name \
-  --index-document index.html \
-  --error-document error.html
-## Tip: **Note the endpoint URL returned, e,g. http://your-bucket-name.s3-website-region.amazonaws.com
+aws s3 website s3://your-bucket-name --index-document index.html --error-document error.html
+
+## Tip: **Note the endpoint URL returned, e,g.** http://your-bucket-name.s3-website-region.amazonaws.com
 
