@@ -53,4 +53,8 @@ aws s3api put-bucket-policy --bucket your-bucket-name --policy file://policy.jso
 6. Upload an index.html, error.html and any other files to the S3 bucket
 7. The site is now live at: http://your-bucket-name.s3-website-region.amazonaws.com
 
-## 🔄Automate with GitHub 
+## 🔄Automating with GitHub 
+🔐**Connecting AWS & GitHub**
+There are two primary methods to authenticate GitHub Actions with AWS:
+## 1. Static AWS Credentials (simple to use but less secure)
+
