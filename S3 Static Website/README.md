@@ -32,8 +32,8 @@ aws s3 website s3://your-bucket-name --index-document index.html --error-documen
 ## Tip: **Note the endpoint URL returned, e,g.** http://your-bucket-name.s3-website-region.amazonaws.com
 
 ## 3. Configure Public Access
-1. Block Public Access: Disable block settings for this bucket in the AWS S3 console under **Permissions ➡️ Block Public Access.
-2. Bucket Policy: Create a bucketpolicy.json file:
+1. **Using AWS Console:** Navigate to S3 and select the policy then under **Permissions ➡️ Bucket Policy and paste the JSON code, then click Save changes.
+2. **Using GitHub** Create a bucket file named policy.json in your project's root directory (the top-level folder of your cloned Git repository, where .git and README.md reside) and paste the following JSON into policy.json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -46,7 +46,10 @@ aws s3 website s3://your-bucket-name --index-document index.html --error-documen
      }
    ]
 }
-3. Apply it:
+3. Apply it using AWS CLI (locally configured): Ensure aws configure with AWS credentials has been applied.
 aws s3api put-bucket-policy --bucket your-bucket-name --policy file://policy.json
+4. Either method will apply the policy and make your buckets objects publicly readable
+5. Sync your local build from GitHub to the bucket: aws s3 sync ./public s3://your-bucket-name --all public-read
+6. The site is now live at: http://your-bucket-name.s3-website-region.amazonaws.com
 
 
