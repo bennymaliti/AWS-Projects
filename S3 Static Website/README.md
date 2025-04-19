@@ -56,7 +56,7 @@ aws s3api put-bucket-policy --bucket your-bucket-name --policy file://policy.jso
 This guide includes some example website files for reference :
 - index.html : A basic static web page with  "**Welcome!** This is my homepage hosted on AWS S3" sample page.
 - error.html : A custom error page (404) for handling missing files.
-- Image file : [Healthy Food](https://maliti-aws-project/s3.eu-west-2.amazonaws.com/healthy+food.jpg) - An image of colourly plate of healthy food.
+- Image file : [Healthy Food](https://maliti-aws-project/s3.eu-west-2.amazonaws.com/healthy+food.jpg) - An image of colourly healthy food on a plate.
 
 ## 🌐Custom Domain with Route 53 - Optional
 1. In AWS Management Console, go to **Route 53**
