@@ -16,7 +16,11 @@ By the end of this guide, you will
 ## Configure AWS CLI
 - Install or update the [AWS CLI](https://awscli.amazonaws.com/AWSCLIV2.msi)
 - **Verify the installation:** - open Start menu, search for cmd to open command prompt and type "C:\> aws --version"
-- 
+- Open command prompt and type aws configure
+- Enter your User AWS Access Key ID
+- Enter your User AWS Secret Access Key
+- Press Enter to confirm Default region
+- Press Enter to confirm Default output format
 
 ## 1. Create an S3 Bucket
 aws s3 mb s3://<
