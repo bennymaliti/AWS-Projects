@@ -6,4 +6,7 @@ By the end of this guide, you will
 - Create and configure an S3 bucket for static website hosting.
 - Setup bucket policies for public access.
 - Upload your static assets to S3.
+- Automate your deployments with GitHub Actions
+
+## Prerequisites
 
