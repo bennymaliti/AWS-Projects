@@ -32,4 +32,21 @@ aws s3 website s3://your-bucket-name --index-document index.html --error-documen
 ## Tip: **Note the endpoint URL returned, e,g.** http://your-bucket-name.s3-website-region.amazonaws.com
 
 ## 3. Configure Public Access
-**1. Block Public Access:** Disable block settings for this bucket in the AWS S3 console under **Permissions 
+1. Block Public Access: Disable block settings for this bucket in the AWS S3 console under **Permissions ➡️ Block Public Access.
+2. Scroll down to Bucket Policy: Create a policy.json file:
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+       "Sid": "PublicReadGetObject",
+       "Effect": "Allow",
+       "Principal": "*",
+       "Action": "s3.GetObject",
+       "Resource": "arn:aws:s3:::your-bucket-name/*"
+     }
+   ]
+}
+3. Apply it:
+aws s3api put-bucket-policy --bucket your-bucket-name --policy file://policy.json
+
+
