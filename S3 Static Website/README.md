@@ -50,6 +50,7 @@ aws s3 website s3://your-bucket-name --index-document index.html --error-documen
 aws s3api put-bucket-policy --bucket your-bucket-name --policy file://policy.json
 4. Either method will apply the policy and make your buckets objects publicly readable
 5. Sync your local build from GitHub to the bucket: aws s3 sync ./public s3://your-bucket-name --all public-read
-6. The site is now live at: http://your-bucket-name.s3-website-region.amazonaws.com
+6. Upload an index.html, error.html and any other files to the S3 bucket
+7. The site is now live at: http://your-bucket-name.s3-website-region.amazonaws.com
 
-
+## 🔄Automate with GitHub 
