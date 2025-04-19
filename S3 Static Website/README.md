@@ -1,4 +1,4 @@
-# Static Website Hosting on AWS S3
+## Static Website Hosting on AWS S3
 This guide explains how to host a static website on AWS S3 and automate deployments using GitHub Actions. This is a summary of the steps outlined in the [full article](https://benmaliti.medium.com/static-website-hosting-on-aws-s3-077f966dbb33) authored by [Benny Maliti](https://www.linkedin.com/in/bennymaliti/)
 
 ## 🚀Overview
@@ -33,7 +33,7 @@ aws s3 website s3://your-bucket-name --index-document index.html --error-documen
 
 ## 3. Configure Public Access
 1. Block Public Access: Disable block settings for this bucket in the AWS S3 console under **Permissions ➡️ Block Public Access.
-2. Scroll down to Bucket Policy: Create a policy.json file:
+2. Bucket Policy: Create a bucketpolicy.json file:
 {
   "Version": "2012-10-17",
   "Statement": [
