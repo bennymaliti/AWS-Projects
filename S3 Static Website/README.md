@@ -9,7 +9,7 @@ By the end of this guide, you will
 - Automate your deployments with GitHub Actions
 
 ## Prerequisites
-- ** AWS Account: An active AWS account with permissions to create S3 buckets and manage IAM.
+- **AWS Account:** An active AWS account with permissions to create S3 buckets and manage IAM.
 - ** AWS CLI: Installed and configured locally. Run <ins> aws configure </ins> to set up your credentials and default region.
 ** Git & GitHub: A GitHub repository containing your static site files (HTML, CSS, JS, assets)
 
