@@ -23,5 +23,12 @@ By the end of this guide, you will
 - Press Enter to confirm Default output format
 
 ## 1. Create an S3 Bucket
-aws s3 mb s3://<
+# Replace your-bucket-name and region with your values
+aws s3 mb s3://your-bucket-name --region region
+
+## 2. Enable Static Website Hosting
+aws s3 website s3://your-bucket-name \
+  --index-document index.html \
+  --error-document error.html
+## Tip: **Note the endpoint URL returned, e,g. http://your-bucket-name.s3-website-region.amazonaws.com
 
