@@ -31,3 +31,5 @@ aws s3 website s3://your-bucket-name --index-document index.html --error-documen
 
 ## Tip: **Note the endpoint URL returned, e,g.** http://your-bucket-name.s3-website-region.amazonaws.com
 
+## 3. Configure Public Access
+**1. Block Public Access:** Disable block settings for this bucket in the AWS S3 console under **Permissions 
