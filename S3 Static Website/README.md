@@ -53,8 +53,14 @@ aws s3api put-bucket-policy --bucket your-bucket-name --policy file://policy.jso
 6. Upload an index.html, error.html and any other files to the S3 bucket
 7. The site is now live at: http://your-bucket-name.s3-website-region.amazonaws.com
 
-## 🔄Automating with GitHub 
-🔐**Connecting AWS & GitHub**
-There are two primary methods to authenticate GitHub Actions with AWS:
-## 1. Static AWS Credentials (simple to use but less secure)
+## 🌐Custom Domain with Route 53 - Optional
+1. In AWS Management Console, go to **Route 53**
+2. Click Get started
+3. Select **Create hosted zones**
+4. Click **Get started**
+5. Enter a domain name
+6. On the type, choose Public Hosted Zone
+7. Click **Create hosted zone**
+8. Add an alias A record pointing to the S3 website endpoint
+
 
