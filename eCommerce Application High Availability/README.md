@@ -60,4 +60,4 @@ To achieve high-availability architecture, we will utilise a number of **AWS ser
 
 ## 💰**Cost Optimisation**  
 1. **Reserved Instances:** Apply to RDS and EC2 for steady-state workloads.
-2. ** Lifecycle Policies:** Archive old CloudFront logs to S3 Glacier.
+2. **Lifecycle Policies:** Archive old CloudFront logs to S3 Glacier.
