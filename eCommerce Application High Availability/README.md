@@ -76,4 +76,4 @@ This project guide gives an understanding of an application that is able to achi
 
 The scalability is the most crucial aspect of the architecture to handle high traffic loads and adjust the number of instances based on demand.
 
-For a full comprehensive step-by-step guide, please visit the full post: [High Availability E-commerce Application Architecture on AWS](H
+For a full comprehensive step-by-step guide, please visit the full post: [High Availability E-commerce Application Architecture on AWS](https://medium.com/@bennymaliti/high-availability-e-commerce-application-architecture-on-aws-5eebac06975b)
