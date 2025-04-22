@@ -61,3 +61,19 @@ To achieve high-availability architecture, we will utilise a number of **AWS ser
 ## 💰**Cost Optimisation**  
 1. **Reserved Instances:** Apply to RDS and EC2 for steady-state workloads.
 2. **Lifecycle Policies:** Archive old CloudFront logs to S3 Glacier.
+
+## ⚠️**Security**
+1. **IAM Roles:** Least privilege access for EC2 (e.g., only S3 read access).
+2. **Encryption:** TLS 1.2 for ALB, AES-256 for RSS/ElastiCache at rest.
+3. **WAF:** Block SQLi/XSS attachs via CloudFront.
+
+## ✔️ **Outcome**
+By implementing an application loadbalancer, the application is able to achieve 99.99% uptime during sale traffic events (50K RPM).
+The Database load is equally able to be reduced by 40% via caching.
+
+## 📌 **Conclusion**
+This project guide gives an understanding of an application that is able to achieve fault tolerance and redudancy, by distributing resources across multiple Availability Zones ensuring that the application remains accessible.
+
+The scalability is the most crucial aspect of the architecture to handle high traffic loads and adjust the number of instances based on demand.
+
+For a full comprehensive step-by-step guide, please visit the full post: [High Availability E-commerce Application Architecture on AWS](H
