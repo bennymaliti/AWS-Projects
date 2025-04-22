@@ -1,1 +1,1 @@
-
+In this project, I develop an infrastructure for a high-availability architecture for an ecommerce application. The architecture address the limitations of an ecommerce system that is currently having limitations of the system such as frequent downtime, a lack of fault tolerance, inefficient reource utilisation and having a manual recovery process.
