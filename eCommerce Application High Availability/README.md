@@ -47,4 +47,15 @@ To achieve high-availability architecture, we will utilise a number of **AWS ser
       * Origin: S3 bucket for static assets.
       * Configure caching policies (TTL: 7 days).   
 7. **Monitoring & Alerts**  
-2. 
+      * Create **CloudWatch alarms** for Database, CPU, EC2 health and Cache misses.
+      * Set up **SNS** topic for alerts
+
+## 🛠️ **Testing & Validation**  
+* **Load Testing:**  
+      * Use AWS Load Testing (Apache JMeter) to simulate 10K concurrent users.
+      * Validate Auto Scaling adds instances within 5 minutes.  
+* **Failure Simulation:**
+      * Terminate an EC2 instance; verify ALB redirects traffic.
+      * Reboot primary RDS; confirm Multi-AZ failover (<2 mins downtime).
+## 💰**Cost Optimisation**
+      * **Reserved Instances:**
