@@ -26,3 +26,25 @@ To achieve high-availability architecture, we will utilise a number of **AWS ser
 - **CloudWatch & SNS**
       ➡️ Automated Recovery: Triggers Auto Scaling on CPU/health-check failures.  
       ➡️ Alerts: SNS notifications to DevOps team via email/SMS for critical issues (e.g., RDS failover).  
+
+## 🪛 Implentations Steps  
+1. **VPC Setup**  
+      * Create a VPC with public/private subnets across 3 AZs.
+      * Configure route tables and NAT gateway for private subnets.
+2. **EC2 & Auto Scaling**
+      * Launch a Linux AMI with the e-commerce app (e.g., Node.js + Nginx)
+      * Define Auto Scaling policies (e.g., minimum : 3, maximum : 6 instances, scale-out at 60% CPU).  
+3. **ALB Configuration**
+      * Setup HTTPS listener with ACM certificate.
+      * Configure health checks (e.g., /health endpoint)  
+4. **RDS Deployment**  
+      * Create a **Multi-AZ** Postgre SQL instance.
+      * Add 2 read replicas for read-heavy queries
+5. **ElastiCache Cluster**  
+      * Deploy Redis cluster in the same VPC.
+      * Update app to cache product data (TTL: 1 hour.)  
+6.  **CloudFront Distribution**
+      * Origin: S3 bucket for static assets.
+      * Configure caching policies (TTL: 7 days).   
+7. **Monitoring & Alerts**  
+2. 
