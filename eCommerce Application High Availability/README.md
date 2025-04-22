@@ -59,5 +59,5 @@ To achieve high-availability architecture, we will utilise a number of **AWS ser
       * Reboot primary RDS; confirm Multi-AZ failover (<2 mins downtime).  
 
 ## 💰**Cost Optimisation**  
-      * Reserved Instances: Apply to RDS and EC2 for steady-state workloads.
-      * Lifecycle Policies: Archive old CloudFront logs to S3 Glacier.
+1. **Reserved Instances:** Apply to RDS and EC2 for steady-state workloads.
+2. ** Lifecycle Policies:** Archive old CloudFront logs to S3 Glacier.
