@@ -57,5 +57,7 @@ To achieve high-availability architecture, we will utilise a number of **AWS ser
 * **Failure Simulation:**
       * Terminate an EC2 instance; verify ALB redirects traffic.
       * Reboot primary RDS; confirm Multi-AZ failover (<2 mins downtime).
-## 💰**Cost Optimisation**
-      * **Reserved Instances:**
+
+## 💰**Cost Optimisation**  
+      * Reserved Instances: Apply to RDS and EC2 for steady-state workloads.
+      * Lifecycle Policies: Archive old CloudFront logs to S3 Glacier.
