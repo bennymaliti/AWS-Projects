@@ -54,9 +54,9 @@ To achieve high-availability architecture, we will utilise a number of **AWS ser
 * **Load Testing:**  
       * Use AWS Load Testing (Apache JMeter) to simulate 10K concurrent users.  
       * Validate Auto Scaling adds instances within 5 minutes.  
-* **Failure Simulation:**
-      * Terminate an EC2 instance; verify ALB redirects traffic.
-      * Reboot primary RDS; confirm Multi-AZ failover (<2 mins downtime).
+* **Failure Simulation:**  
+      * Terminate an EC2 instance; verify ALB redirects traffic.  
+      * Reboot primary RDS; confirm Multi-AZ failover (<2 mins downtime).  
 
 ## 💰**Cost Optimisation**  
       * Reserved Instances: Apply to RDS and EC2 for steady-state workloads.
