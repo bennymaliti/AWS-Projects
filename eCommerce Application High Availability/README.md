@@ -72,7 +72,7 @@ By implementing an application loadbalancer, the application is able to achieve 
 The Database load is equally able to be reduced by 40% via caching.
 
 ## 📌 **Conclusion**
-This project guide gives an understanding of an application that is able to achieve fault tolerance and redudancy, by distributing resources across multiple Availability Zones ensuring that the application remains accessible.
+This project guide gives an understanding of an application that is able to achieve fault tolerance and redundancy, by distributing resources across multiple Availability Zones ensuring that the application remains accessible.
 
 The scalability is the most crucial aspect of the architecture to handle high traffic loads and adjust the number of instances based on demand.
 
