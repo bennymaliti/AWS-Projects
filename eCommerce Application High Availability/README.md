@@ -23,7 +23,7 @@ To achieve high-availability architecture, we will utilise a number of **AWS ser
 - **VPC with Public/Private Subnets**    
       ➡️ Security: EC2 instances in private subnets; ALB in public subnets.  
       ➡️ NAT Gateway: Allows private instances to download updates securely.
-- **CloudWatch & SNS**
+- **CloudWatch & SNS**  
       ➡️ Automated Recovery: Triggers Auto Scaling on CPU/health-check failures.  
       ➡️ Alerts: SNS notifications to DevOps team via email/SMS for critical issues (e.g., RDS failover).  
 
