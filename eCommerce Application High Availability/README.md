@@ -7,18 +7,18 @@ To achieve high-availability architecture, we will utilise a number of AWS servi
       : Redundancy       => Deploy instances across 3 AZ's to eliminate single points of failure.  
       : Scalability      => Auto Scaling to adjust capacity based on CPU/memory usage. (eg. scale out at 70% CPU)  
       : Cost Efficiency  => Replace manual scaling with dynamic provisioning
-- Application Load Balancer  
+- **Application Load Balancer**    
       : Traffic Distribution : Routes HTTP/HTTPS traffic to healthy instances in multiple AZs.  
-      : Integration with Auto Scaling : Automatically registers new instances.
-      : SSL Offloading: Reduces compute load on EC2 by handling TLS termination.
+      : Integration with Auto Scaling : Automatically registers new instances.  
+      : SSL Offloading: Reduces compute load on EC2 by handling TLS termination.  
 - Amazon RDS (Multi-AZ + Read Replicas)  
       : High Availability: Multi-AZ deployment ensures automatic failover (standy replica in another AZ).  
       : Read Scalability: Read replicas handle product searches / catalog reads, reducing primary DB load.  
 - Amazon ElasticCache (Redis)  
-      : Caching: Stores session data and product listings (e.g., 1M + SKUs), reducing DB read latency by ~60%
-      : Managed Service: Automated patching and backups.
+      : Caching: Stores session data and product listings (e.g., 1M + SKUs), reducing DB read latency by ~60%  
+      : Managed Service: Automated patching and backups.  
 - Amazon CloudFront  
       : Global latency Reduction: Caches static assets (images, CSS/JS) at locations closer to the customer.  
-      : DDoS Protection: Integrated with AWS Shield Standard.
+      : DDoS Protection: Integrated with AWS Shield Standard.  
 - VPC with Public/Private Subnets  
       : 
