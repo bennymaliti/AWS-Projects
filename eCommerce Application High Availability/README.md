@@ -7,6 +7,6 @@ To achieve high-availability architecture, we will utilise a number of AWS servi
       : Redundancy       => Deploy instances across 3 AZ's to eliminate single points of failure.  
       : Scalability      => Auto Scaling to adjust capacity based on CPU/memory usage. (eg. scale out at 70% CPU)  
       : Cost Efficiency  => Replace manual scaling with dynamic provisioning
-- Application Load Balancer
-      : Traffic Distribution : Routes HTTP/HTTPS traffic to healthy instances in multiple AZs.
-      : Integration with Auto Scaling : Automatically registers new instances.
+- Application Load Balancer  
+      : Traffic Distribution : Routes HTTP/HTTPS traffic to healthy instances in multiple AZs.  
+      : Integration with Auto Scaling : Automatically registers new instances.  
