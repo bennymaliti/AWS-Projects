@@ -36,4 +36,11 @@ looking to leveraging cloud infrastructure.
 ### **Monitoring and Optimisation**  
 - Track the usage and performance of AWS resources by utilising Amazon CloudWatch.  
 
-## ♻️🔧Implementation  
+## ♻️🔧Implementation Steps    
+1. **Audit & Tagging:**  
+- Run **AWS Cost Explorer** to identify top expenses. Tag resources by department/workload (e.g., `Environment: Production`, `Workload : Transcoding`).
+- Use **Trusted Advisor** for idle resource checks (e.g., unattached EBS volumes).   
+
+2. **EC2 Reserved Instances:**  
+- Purchase 3-year RIs for 
+
