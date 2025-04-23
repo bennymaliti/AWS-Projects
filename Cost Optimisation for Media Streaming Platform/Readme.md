@@ -11,9 +11,9 @@ The aim of this project is to analyse at the costs and improve resource manageme
  * AWS Lambda  
  * Amazon S3  
  * Amazon CloudFront  
- * Amazon CloudWatch  
-The completion of this project helps in gaining hands-on experience with optimising costs and resource management on AWS and helps drive cost efficiencies for organisations
-looking to leveraging cloud infrastructure.  
+ * Amazon CloudWatch
+
+The completion of this project helps in gaining hands-on experience with optimising costs and resource management on AWS and helps drive cost efficiencies for organisations looking to leveraging cloud infrastructure.  
 
 ## 🚀Overview  
 - To analyse the existing infrastructure of the media streaming platform and identify opportunities for cost optimisation and resource management.  
