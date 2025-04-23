@@ -80,7 +80,7 @@ looking to leveraging cloud infrastructure.
 ### **Cost Reduction**
 - 65% savings on EC2 via RIs + Spot.
 - 40% storage cost reduction via S3 tiering.
-- 30% lower data transfer costs with CloudFront caching.
+- 30% lower data transfer costs via CloudFront caching.
 ### **Performance** 
 - Improved latency and reduced origin load via CloudFront edge caching.
 ### **Operational Efficiency and Visibility**
