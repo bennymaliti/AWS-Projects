@@ -34,13 +34,49 @@ looking to leveraging cloud infrastructure.
 - Improve the performance of content delivery by implementing Amazon CloudFront.    
 
 ### **Monitoring and Optimisation**  
-- Track the usage and performance of AWS resources by utilising Amazon CloudWatch.  
-
+- Track the usage and performance of AWS resources by utilising Amazon CloudWatch and Cost Explorer metrics to chart CPU, memory, network I/O and diso I/O over the past 30 - 90 days.  
+  
 ## ♻️🔧Implementation Steps    
 1. **Audit & Tagging:**  
 - Run **AWS Cost Explorer** to identify top expenses. Tag resources by department/workload (e.g., `Environment: Production`, `Workload : Transcoding`).
-- Use **Trusted Advisor** for idle resource checks (e.g., unattached EBS volumes).   
+- Use **Trusted Advisor** for idle resource checks (e.g., unattached EBS volumes).
 
 2. **EC2 Reserved Instances:**  
-- Purchase 3-year RIs for 
+- Purchase 3-year RIs for `c5.4xlarge` instances (transcoding cluster) with All Upfront payment (maximum discount).  
+
+3. **Spot Instance Integration:**  
+- Deploy Spot Fleets for batch processing with mixed instance types (e.g., `c5.large`, `m5.large`).  
+- Use **Spot Block** for 1 - 6 hour jobs.
+- Leverage EC2 Spot fleets or Spot Auto Scaling groups, with fallback to On-Demand if Spot capacity is insufficient.
+- Use AWS Batch or Amazon Elastic Kubernetes Service with Spot Capacity providers.
+  
+4. **Serverless Architecture with AWS Lambda:**  
+- Rewrite video thumbnail generation as Lambda functions (trigerred by S3 uploads). Set memory to 1024MB (optimised for CPU).
+- Migrate stateless microservices or ingestion endpoints to **Lambda functions** behind API Gateway - pay only for actual invocation time.
+- Trigger Lambda on S3 uploads for lightweight media metadata extraction or thumbnail generation.
+- For heavier workloads, consider **AWS Step Functions** to orchestrate long-running or parallel stacks.
+- For best practices, right-size memory allocation to balance cost versus execution time.
+- Use provisioned concurrency for latency-sensitive functions, but only where needed.  
+
+5. **Storage Optimisation with Amazon S3:**  
+- **Lifecycle Policies:** Apply lifecycle policy to `media bucket` to **transition** infrequently accessed content to **S3 Standard-Infrequent Access (IA)** after 30 days, then to Glacier Deep Archive after 180 days.
+- **Media Storage:** Centralise all video files in S3. Ensure you use **S3 Object Lock** or **Versioning** only if compliance requires it.
+- **Delete** logs or temporary files automatically after a defined retention period.
+- **Cost Tags & Analytics:** Enable **S3 Storage Lens** and **Cost Allocation Tags** to monitor consumption by bucket, prefix and tag.
+  
+6. **Global Content Delivery with Amazon CloudFront:**  
+- Set default TTL to 604800 seconds (7 days) for `/videos/*` path. Enable Brotli compression.
+- Enable **Edge Caching** and front the S3 origin (and any API endpoints) with CloudFront distributions.   
+  Set the appropriate **cache-control headers** to maximise TTL at edge.
+- **Origin Failover:** Configure multiple origins (e.g., primary S3 bucket and fallback origin) for higher availability.
+- **Security & Cost Controls:** Enforce HTTPS only, use **AWS WAF** for **DDoS** protection at edge, and monitor **CloudFront** metrics for cache hit ratio (target > 90%).
+
+7. **Monitoring & Ongoing Optimisation with Amazon CloudWatch:**  
+- **Metrics & Dashboards:** Build a cost-optimisation dashbaord showing EC2 RI utilisation, Spot interruption rates, Lambda duration, S3 storage tier usage and CloudFront cache hit ratio.
+- **Alarms & Automation:** Set alarms on under-utilised RIs (e.g. <60% utilisation over 7 days) to trigger notifications or automated recommendations via **AWS Lambda**.
+- **Cost Anomaly Detection:** Enable AWS Anomaly Detection to surface unexpected spikes in service usage or spend.   
+
+## 🎯Expected Outcomes  
+### **Cost Reduction:**
+- 65% savings on EC2
 
