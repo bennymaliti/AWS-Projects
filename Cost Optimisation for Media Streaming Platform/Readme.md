@@ -77,11 +77,27 @@ looking to leveraging cloud infrastructure.
 - **Cost Anomaly Detection:** Enable AWS Anomaly Detection to surface unexpected spikes in service usage or spend.   
 
 ## 🎯Expected Outcomes  
-### **Cost Reduction:**
+### **Cost Reduction**
 - 65% savings on EC2 via RIs + Spot.
 - 40% storage cost reduction via S3 tiering.
 - 30% lower data transfer costs with CloudFront caching.
-### **Performance:** 
-- Improved latency and reduced origin load via CloudFront edge caching.  
+### **Performance** 
+- Improved latency and reduced origin load via CloudFront edge caching.
+### **Operational Efficiency and Visibility**
+- Automated scaling and serverless workflows reduce manual intervention.
+- Proactive alerts driving continuous cost governance.
+
+## ⚠️Risks & Mitigation
+- **Spot Interruptions:** Design workflows with checkpointing (e.g., save progress to S3).
+- **Lambda Cold Starts:** Use Provisioned Concurrency for critical APIs.
+- **S3 Retrieval Costs:** Test Lifecycle policies in staging to avoid unintended Glacier retrievals.
+
+##✔️**Recommendations**  
+This project analysed a media-streaming platform AWS services utilisation. By following the above blueprint, it is estimated that the platform will achieve a balance of performance, resilience, and lean AWS spend - freeing budget for future innovation rather than wasteful infrastructure.  
+
+By prioritising Reserved Instances (RI's) and Spot Instances (SI) tiering for immediate savings, followed by **Spot migration** and **Serverless** refactoring.  
+
+It is also recommended to use **Amazon CloudWatch Dashboards** to track progress monthly.  
+
 
 
