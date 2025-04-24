@@ -31,7 +31,9 @@ Since website files need to be publicly accessible, you must configure the bucke
 1. **Disable Block Public Access:**  
 - In the S3 bucket settings, navigate to the **Permissions** tab.
 - Under **Block Public Access (bucket settings),** click **Edit** and uncheck the options that block public access if you plan to serve a public website.  
-(Be mindful: AWS recommends keeping public access blocked if you're serving private or sensitive content. For static website, you intentionally allow read access for all users.)  
+(Be mindful:  
+AWS recommends keeping public access blocked if you're serving private or sensitive content.  
+For static website, you intentionally allow read access for all users.)  
 
 2. **Add a Bucket Policy:**  
 - Still under **Permissions** tab, scroll to **Bucket Policy** and click **Edit**.
