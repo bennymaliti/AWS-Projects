@@ -1,5 +1,5 @@
 ## Cost Optimisation and Resource Management for a Media Streaming Platform  
-The aim of this project is to analyse at the costs and improve resource management for a media streaming platform hosted on AWS to ensure efficient utilisation of services.    
+The aim of this project is to analyse the costs and improve resource management for a media streaming platform hosted on AWS to ensure efficient utilisation of services.    
 
 ## 🎯 Objective  
 - To analyse the current infrastructure.  
@@ -13,7 +13,7 @@ The aim of this project is to analyse at the costs and improve resource manageme
  * Amazon CloudFront  
  * Amazon CloudWatch
 
-The completion of this project helps in gaining hands-on experience with optimising costs and resource management on AWS and helps drive cost efficiencies for organisations looking to leveraging cloud infrastructure.  
+The completion of this project helps in gaining an understanding with optimising costs and resource management on AWS and helping drive cost efficiencies for organisations looking to leverage AWS cloud infrastructure.  
 
 ## 🚀Overview  
 - To analyse the existing infrastructure of the media streaming platform and identify opportunities for cost optimisation and resource management.  
