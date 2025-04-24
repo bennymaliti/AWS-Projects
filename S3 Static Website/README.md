@@ -2,57 +2,74 @@
 This project works through how to host a static website on AWS S3. This is a summary of the steps outlined in the [full article](https://benmaliti.medium.com/static-website-hosting-on-aws-s3-077f966dbb33) authored by [Benny Maliti](https://www.linkedin.com/in/bennymaliti/)
 
 ## 🚀Overview
-By the end of this guide, you will
+By the end of this project, you will
 - Create and configure an S3 bucket for static website hosting.
 - Setup bucket policies for public access.
 - Upload your static assets to S3.  
 
-## 🛠️Prerequisites
-- **AWS Account:** An active AWS account with permissions to create S3 buckets and manage IAM.
-- **AWS CLI:** Installed and configured locally. Run <ins> aws configure </ins> to set up your credentials and default region.
-- **Git & GitHub:** A GitHub repository containing your static site files (HTML, CSS, JS, assets)
+## 🛠️Step 1: Prepare Your Website Content
+- **Create Your Content:**
+    Prepare your static website content (HTML, CSS, JavaScript, Images, etc.)
+    Make sure you have an entry point file, usually `index.html` and optionally an error page `error.html`
+  
+## Step 2: Create an S3 Bucket and Enable Static Website Hosting  
+1. **Sign in to AWS:**  
+- Log in to the [AWS Management Console](https://aws.amazon.com/console)  
 
-## Configure AWS CLI
-- Install or update the [AWS CLI](https://awscli.amazonaws.com/AWSCLIV2.msi)
-- **Verify the installation:** - open Start menu, search for cmd to open command prompt and type "C:\> aws --version"
-- Open command prompt and type aws configure
-- Enter your User AWS Access Key ID
-- Enter your User AWS Secret Access Key
-- Press Enter to confirm Default region
-- Press Enter to confirm Default output format
+2. **Navigate to Amazon S3:**  
+- In the AWS Console, search for and select **S3.**  
 
-## 1. Create an S3 Bucket
-# Replace your-bucket-name and region with your values
-aws s3 mb s3://your-bucket-name --region region
+3. **Create a New Bucket:**  
+- Click the **Create Bucket** button
+- **Bucket Name:** Enter a unique name that will ideally match your custom domain name (e.g., `my-unique-static-website`).
+- **Region:** Select a region that's geographically close to your primary audience.
+- Leave the rest of the default settings for now.
+- Click **Create Bucket**.
 
-## 2. Enable Static Website Hosting
-aws s3 website s3://your-bucket-name --index-document index.html --error-document error.html
+## Step 3: Configure Bucket Permissions for Public Access
+Since website files need to be publicly accessible, you must configure the bucket to allow public read access.  
+1. **Disable Block Public Access:**  
+- In the S3 bucket settings, navigate to the **Permissions** tab.
+- Under **Block Public Access (bucket settings),** click **Edit** and uncheck the options that block public access if you plan to serve a public website.  
+(Be mindful: AWS recommends keeping public access blocked if you're serving private or sensitive content. For static website, you intentionally allow read access for all users.)  
 
-## Tip: **Note the endpoint URL returned, e,g.** http://your-bucket-name.s3-website-region.amazonaws.com
+2. **Add a Bucket Policy:**  
+- Still under **Permissions** tab, scroll to **Bucket Policy** and click **Edit**.
+- Add a policy similar to bennymaliti-s3.json (replace your-bucket-name with your actual bucket name).
+- Click **Save** to apply policy.
 
-## 3. Configure Public Access
-1. **Using AWS Console:** Navigate to S3 and select the policy then under **Permissions ➡️ Bucket Policy and paste the JSON code, then click Save changes.
-2. **Using GitHub** Create a bucket file named policy.json in your project's root directory (the top-level folder of your cloned Git repository, where .git and README.md reside) and paste the following JSON into policy.json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-       "Sid": "PublicReadGetObject",
-       "Effect": "Allow",
-       "Principal": "*",
-       "Action": "s3.GetObject",
-       "Resource": "arn:aws:s3:::your-bucket-name/*"
-     }
-   ]
-}
-3. Apply it using AWS CLI (locally configured): Ensure aws configure with AWS credentials has been applied.
-aws s3api put-bucket-policy --bucket your-bucket-name --policy file://policy.json
-4. Either method will apply the policy and make your buckets objects publicly readable
-5. Sync your local build from GitHub to the bucket: aws s3 sync ./public s3://your-bucket-name --all public-read
-6. The site is now live at: http://your-bucket-name.s3-website-region.amazonaws.com
+## Step 4: Upload Your Website Files  
+1. **Open Your Bucket:**  
+- Select the newly created bucket (your-bucket-name) from the S3 dashboard.  
+2. **Upload Files:**  
+- Click **Upload** button.
+- Choose the files/folders of your website (including `index.html`, `error.html`, CSS, JavaScript, images, etc).
+- Follow the prompts and click through; accept the defaults.
+- Complete the upload process.  
 
+## Step 5: Request an SSL Certificate with AWS Certificate Manager (ACM).  
+1. **Open ACM:**  
+- In the AWS Management Console, search for and open **Certificate Manager.**  
+2. **Request a Public Certificate:**  
+- Click **Request a certificate** and choose **Request a public certificate**.
+- **Add Domain Name:**  
+    Enter your custom domain (e.g, `example.com`) and, if desired, add any subdomains (e.g., `www.example.com`).  
+3. **Validation Method:**  
+- Choose **DNS validation** (this is the easiest if you are using Route 53 for DNS Management).
+4. **Review and Request:**
+  Review the settings and click **Confirm and request.**  
+5. **DNS Validation:**  
+- ACM will provide one or more CNAME records that you need to add to your DNS.
+- You can add these records manually in Route 53 later or, if your domain is registered in Route 53, use the automatic validation option.
+- **Wait for Validation:**  
+    Once the CNAME records are in place, ACM will validate your domain and issue the certificate. This process may take a few minutes.  
+
+## Step 6: Create a CloudFront Distribution  
+Since S3 website endpoints don't support HTTPS, we use CloudFront to front the content.  
+1. **Open CloudFront:**  
+In the [AWS Management Console](https://aws.amazon.com/console/), search for and navigate to **CloudFront**.  
 ## Sample Website Page
-This guide includes some example website files for reference :
+This section includes some example website files for reference :
 - index.html : A basic static web page with  "**Welcome!** This is my homepage hosted on AWS S3" sample page.
 - error.html : A custom error page (404) for handling missing files.
 - Image file : [Healthy Food](https://maliti-aws-project/s3.eu-west-2.amazonaws.com/healthy+food.jpg) - An image of colourly healthy food on a plate.
