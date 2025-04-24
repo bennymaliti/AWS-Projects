@@ -4,8 +4,10 @@ This project works through how to host a static website on AWS S3. This is a sum
 ## 🚀Overview
 By the end of this project, you will
 - Create and configure an S3 bucket for static website hosting.
-- Setup bucket policies for public access.
-- Upload your static assets to S3.  
+- Setup bucket policies for public access and upload files to S3 bucket.  
+- Request SSL certificate with ACM.
+- Create CloudFront distribution.
+- Configure Route 53 for a custom domain.    
 
 ## 🛠️Step 1: Prepare Your Website Content
 - **Create Your Content:**
