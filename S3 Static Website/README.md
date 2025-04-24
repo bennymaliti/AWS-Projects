@@ -67,21 +67,74 @@ Since website files need to be publicly accessible, you must configure the bucke
 ## Step 6: Create a CloudFront Distribution  
 Since S3 website endpoints don't support HTTPS, we use CloudFront to front the content.  
 1. **Open CloudFront:**  
-In the [AWS Management Console](https://aws.amazon.com/console/), search for and navigate to **CloudFront**.  
+In the [AWS Management Console](https://aws.amazon.com/console/), search for and navigate to **CloudFront**.
+
+2. **Create a New Distribution:**
+- Click **Create Distribution** and choose **Web** (the standard distribution).  
+
+3. **Origin Settings:**  
+- For **Origin Domain Name,** select S3 bucket's website endpoint (it should appear in the list; it will look like `example.com.s3-website-<region>.amazonaws.com`).
+- Set **Origin Protocol Policy** to **HTTP Only** (since S3 website endpoints serve over HTTP).  
+
+4. **Default Cache Behaviour:**  
+- Accept the default settings or customise as desired.  
+
+5. **Distribution Settings:**  
+- **Alternate Domain Names (CNAMEs):**
+    Enter your custom domain name(s) (e.g., `example.com`, `www.example.com`).
+- **SSL Certificate:**  
+    Under **Custom SSL Certificate,** select the ACM certificate you just validated.
+- **Default Root Object:**  
+    Set this to `index.html` (or your chosen entry point).
+6. **Create Distribution:**
+  Click **Create Distribution** and allow some time (typically 15 - 20 minutes) for CloudFront to deploy your distribution.
+
+## Step 7: Configure Route 53 to Use Your Custom Domain
+1. **Open Route 53:**  
+In the AWS Management Console, navigate to **Route 53.**
+2. **Create or Use an Existing Hosted Zone:**
+   - If you haven't already set up a hosted zone for your domain, click **Create Hosted Zone** and follow the prompts.
+3. **Add an Alias Record for Your Domain:**  
+    - Within your hosted zone, click **Create Record.**
+    - **Record Name:**  
+        Leave it blank for the root domain (`example.com`) or specify `www` if you are setting up a subdomain.
+    - **Record Type:**
+        Choose **A - IPv4 address.**
+    - **Alias:**
+      Enable the Alias option.
+    - **Alias Target:**
+      From the dropdown list, choose your CloudFront distribution (the domain name assigned automatically by the CloudFront,         e.g., `dxxxxxxxxxxxxx.cloudfront.net`).
+    - **Create Record.**
+4. **(Optional) Add a Record for www:***  
+    - If you want both `example.com` and `www.example.com` to point to your CloudFront distribution, repeat the alias record for the `www` subdomain.  
+5. **Validate Domain Records:**  
+    - Give DNS time to propagate (this can take a few minutes up to an hour).
+    - Once propoagation is complete, navigate to your custom domain using HTTPS.
+
+## Step 8: Test Your Setup  
+- **Access Your Website:**
+    Open your web browser and navigate to your custom domain (e.g., `https://example.com`).
+- **Verify HTTPS:**
+    Make sure the SSL certificate is recognised and your website loads securely via Cloudfront.
+
+## Additional Considerations  
+- **ACM Certificate Renewal:**
+    ACM automatically renews certificates as long as DNS validation remains in place.
+- **CloudFront Caching:**
+    If you update website content, you may need to invalidate CloudFront caches so that users see the new content promptly.
+- **Monitoring & Logging:**  
+    Consider enabling logging in CloudFront and S3 for audit and performance tracking purposes.
+  
 ## Sample Website Page
 This section includes some example website files for reference :
 - index.html : A basic static web page with  "**Welcome!** This is my homepage hosted on AWS S3" sample page.
 - error.html : A custom error page (404) for handling missing files.
 - Image file : [Healthy Food](https://maliti-aws-project/s3.eu-west-2.amazonaws.com/healthy+food.jpg) - An image of colourly healthy food on a plate.
 
-## 🌐Custom Domain with Route 53 - Optional
-1. In AWS Management Console, go to **Route 53**
-2. Click Get started
-3. Select **Create hosted zones**
-4. Click **Get started**
-5. Enter a domain name
-6. On the type, choose Public Hosted Zone
-7. Click **Create hosted zone**
-8. Add an alias A record pointing to the S3 website endpoint
+## 🌐Personal Website  
+The personal website for this project is hosted at [Benny Maliti](https://bennymaliti.co.uk)  
+
+## Conclusion  
+This project walked us through setting up a static S3 website, securing it with ACM via CloudFront, and configuring Route 53 to handle the custom domain.  
 
 
