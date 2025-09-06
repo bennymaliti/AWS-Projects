@@ -9,29 +9,31 @@ Monitoring and automated recovery are handled via **CloudWatch** alarms and **SN
 To achieve high-availability architecture, we will utilise a number of **AWS services and components**  
 - **Multi-AZ VPC Setup**    
       ➡️ Deply the infrastructure in at least two AZs. Create a VPC with both public and private subnets in each AZ to                 eliminate single point of failure.  
-      ➡️ Spanning resources across AZs ensures the application stays available even if one AZ goes down.  
-- **Amazon EC2 with Auto Scalling**      
+      ➡️ Spanning resources across AZs ensures the application stays available even if one AZ goes down.
+  - **Elastic Load Balancing - ELB**    
+      ➡️ Use an ELB (Application Load Balancer) to distribute incoming traffic across EC2 instances in all AZs.  
+      ➡️ The ELB will automatically route requests only to healthy instances, providing automatic failover and high availabiltity.  
+- **Auto Scalling**      
       ➡️ Configure an Auto Scaling group with a Launch Template.  
       ➡️ Auto Scaling will dynamically add or remove EC2 instances based on demand (e.g. CPU or Network Load).    
-      ➡️ Cost Efficiency: Replace manual scaling with dynamic provisioning
-- **Application Load Balancer**    
-      ➡️ Traffic Distribution : Routes HTTP/HTTPS traffic to healthy instances in multiple AZs.  
-      ➡️ Integration with Auto Scaling : Automatically registers new instances.  
-      ➡️ SSL Offloading: Reduces compute load on EC2 by handling TLS termination.  
+      ➡️ This ensures the application is able to handle peak traffic and will also be able to scale down when idle.  
+  
 - **Amazon RDS (Multi-AZ + Read Replicas)**    
-      ➡️ High Availability: Multi-AZ deployment ensures automatic failover (standy replica in another AZ).  
-      ➡️ Read Scalability: Read replicas handle product searches / catalog reads, reducing primary DB load.  
-- **Amazon ElasticCache (Redis)**    
-      ➡️ Caching: Stores session data and product listings (e.g., 1M + SKUs), reducing DB read latency by ~60%  
-      ➡️ Managed Service: Automated patching and backups.  
-- **Amazon CloudFront**    
-      ➡️ Global latency Reduction: Caches static assets (images, CSS/JS) at locations closer to the customer.  
-      ➡️ DDoS Protection: Integrated with AWS Shield Standard.  
-
-- **CloudWatch & SNS**  
-      ➡️ Automated Recovery: Triggers Auto Scaling on CPU/health-check failures.  
-      ➡️ Alerts: SNS notifications to DevOps team via email/SMS for critical issues (e.g., RDS failover).  
-
+      ➡️ Provision the database using Amazon RDS in **Multi-AZ** mode, which automatically replicates data synchronously to a standby in another AZ.  
+      ➡️ Create one or more **RDS read replicas** to offload read-heavy traffic from the primary database, enabling horizontal scaling of read queries.  
+- **Amazon ElasticCache:**    
+      ➡️ Use ElastiCache (Redis or Memcached) as an in-memory caching layer for frequently accessed data.  
+      ➡️ Caching reduces load on the database and delivers microsecond-latency responses.  
+- **Amazon CloudFront CDN**    
+      ➡️ Deploy a CloudFront distribution in front of the load balancer or S3 bucket.  
+      ➡️ This is to accelerate static and dynamic content delivery to global users.  
+- **Monitoring and Alerts**  
+      ➡️ Configure Amazon CloudWatch to monitor key metrics (CPUUtilization, network I/O, DB latency, etc.  
+      ➡️ Set CloudWatch Alarms to trigger SNS notifications or scaling actions when thresholds are exceeded.  
+- **Automated Recovery:**
+      ▶️ The combination of multi-AZ deployment, ELB health checks, Auto Scaling health policies,and CloudWatch alarms enables the system to recover from failures automatically. For example, if an EC2 instance fails, Auto Scaling can replace it,and ELB will stop sending traffic to it.
+      ▶️ SNS alerts ensures admins and developers are notified of any critical issues.
+  
 ## 🪛 Implentations Steps  
 1. **VPC Setup**  
       * Create a VPC with public/private subnets across 3 AZs.
