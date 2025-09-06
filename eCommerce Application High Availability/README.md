@@ -1,7 +1,9 @@
 ## AWS High Availability Architecture for an Application
 This project implements a **high-availability AWS architecture** using Terraform for infrastructure-as-code, a sample Python application, and GitHub Actions for CI/CD.  
 
-The design spans multiple **Availability Zones (AZs)** for fault tolerance, uses an **Elastic Load Balancer (ELB)** and **Auto Scaling** for dynamic traffic distribution, and employs **Amazon RDS (with Multi-AZ and read replicas)**, **ElastiCache**, and **CloudWatch** alarms and **SNS** (with CloudTrail for audit logging).  
+The design spans multiple **Availability Zones (AZs)** for fault tolerance, uses an **Elastic Load Balancer (ELB)** and **Auto Scaling** for dynamic traffic distribution, and employs **Amazon RDS (with Multi-AZ and read replicas)**, **ElastiCache**, and **CloudFront** for scalability and performance.  
+
+Monitoring and automated recovery are handled via **CloudWatch** alarms and **SNS** (with CloudTrail for audit logging).
 
 ## 🚀 Architecture Overview
 To achieve high-availability architecture, we will utilise a number of **AWS services and components**  
