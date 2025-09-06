@@ -7,9 +7,12 @@ Monitoring and automated recovery are handled via **CloudWatch** alarms and **SN
 
 ## 🚀 Architecture Overview
 To achieve high-availability architecture, we will utilise a number of **AWS services and components**  
+- **Multi-AZ VPC Setup**    
+      ➡️ Deply the infrastructure in at least two AZs. Create a VPC with both public and private subnets in each AZ to                 eliminate single point of failure.  
+      ➡️ Spanning resources across AZs ensures the application stays available even if one AZ goes down.  
 - **Amazon EC2 with Auto Scalling**      
-      ➡️ Redundancy: Deploy instances across 3 AZ's to eliminate single points of failure.  
-      ➡️ Scalability: Auto Scaling to adjust capacity based on CPU/memory usage. (eg. scale out at 70% CPU)  
+      ➡️ Configure an Auto Scaling group with a Launch Template.  
+      ➡️ Auto Scaling will dynamically add or remove EC2 instances based on demand (e.g. CPU or Network Load).    
       ➡️ Cost Efficiency: Replace manual scaling with dynamic provisioning
 - **Application Load Balancer**    
       ➡️ Traffic Distribution : Routes HTTP/HTTPS traffic to healthy instances in multiple AZs.  
@@ -24,9 +27,7 @@ To achieve high-availability architecture, we will utilise a number of **AWS ser
 - **Amazon CloudFront**    
       ➡️ Global latency Reduction: Caches static assets (images, CSS/JS) at locations closer to the customer.  
       ➡️ DDoS Protection: Integrated with AWS Shield Standard.  
-- **VPC with Public/Private Subnets**    
-      ➡️ Security: EC2 instances in private subnets; ALB in public subnets.  
-      ➡️ NAT Gateway: Allows private instances to download updates securely.
+
 - **CloudWatch & SNS**  
       ➡️ Automated Recovery: Triggers Auto Scaling on CPU/health-check failures.  
       ➡️ Alerts: SNS notifications to DevOps team via email/SMS for critical issues (e.g., RDS failover).  
