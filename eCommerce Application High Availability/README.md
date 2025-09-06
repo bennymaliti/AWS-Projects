@@ -1,8 +1,8 @@
-## High Availability Architecture for e-commerce Application
-In this project, I develop an infrastructure for a high-availability architecture for an ecommerce application.  
-The architecture address the limitations of an ecommerce system that is currently having limitations of the system such as frequent downtime, a lack of fault tolerance, inefficient resource utilisation and having a manual recovery process.
+## AWS High Availability Architecture for an Application
+This project implements a **high-availability AWS architecture** using Terraform for infrastructure-as-code, a sample Python application, and GitHub Actions for CI/CD.  
+The design spans multiple **Availability Zones (AZs)** for fault tolerance, uses an **Elastic Load Balancer (ELB)** and **Auto Scaling** for dynamic traffic distribution, and employs **Amazon RDS (with Multi-AZ and read replicas)**, **ElastiCache**, and **CloudWatch** alarms and **SNS** (with CloudTrail for audit logging).  
 
-## 🚀 Overview
+## 🚀 Architecture Overview
 To achieve high-availability architecture, we will utilise a number of **AWS services and components**  
 - **Amazon EC2 with Auto Scalling**      
       ➡️ Redundancy: Deploy instances across 3 AZ's to eliminate single points of failure.  
