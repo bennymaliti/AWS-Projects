@@ -25,7 +25,7 @@ provider "aws" {
     tags = {
       Project     = "HA-Ecommerce"
       Environment = var.environment
-      Owner       = "CloudEngineer"
+      Owner       = "Benny"
       Terraform   = "true"
     }
   }
